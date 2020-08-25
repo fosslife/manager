@@ -5,7 +5,7 @@ mod actions;
 async fn main() {
     let mut bot = Bot::from_env("MANAGER_TOKEN").event_loop();
 
-    bot.command("kick", actions::kick::kick);
+    bot.command("ban", actions::ban::ban);
 
     bot.command("mute", actions::mute::mute);
 

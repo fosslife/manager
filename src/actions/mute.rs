@@ -26,7 +26,8 @@ pub async fn mute(ctx: Arc<contexts::Command<contexts::Text>>) {
                 .unwrap();
         }
     } else {
-        ctx.send_message("Please reply to a message that you want to kick!")
+        //TODO: implement /mute userid api
+        ctx.send_message("Please reply to a message that you want to mute!")
             .call()
             .await
             .unwrap();
