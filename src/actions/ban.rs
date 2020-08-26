@@ -2,7 +2,7 @@ use std::sync::Arc;
 use tbot::contexts;
 use tbot::prelude::*;
 
-pub async fn ban(ctx: Arc<contexts::Command<contexts::Text>>) {
+pub async fn ban(ctx: Arc<contexts::Command<contexts::Text>>, _state: Arc<config::Config>) {
     if let Some(message) = ctx.reply_to.clone() {
         let user_to_kick = message.from.as_ref().unwrap().id;
         let username = message.from.as_ref().unwrap().username.as_ref().unwrap();
