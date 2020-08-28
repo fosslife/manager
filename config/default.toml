@@ -1,5 +1,6 @@
 [bot]
-token = "TOKEN_"
+# token = ""
+# master_id =
 
-[chat]
-chat_list = []
+[database]
+name = "" # database path and name eg: "data/bot.db"

@@ -5,11 +5,21 @@ use tbot::Bot;
 mod actions;
 mod handlers;
 mod settings;
+// mod database;
 
 #[tokio::main]
 async fn main() {
     let settings = settings::load();
-    // let settings = Arc::new(settings);
+    
+    if settings.get_str("bot.token").is_err(){
+        println!("Invalid configuration. please provide BOT token");
+        return;
+    }
+
+    if settings.get_str("bot.master_id").is_err()  {
+        println!("Invalid configuration. please provide Master ID");
+        return;
+    }
 
     let mut bot = Bot::new(settings.get_str("bot.token").unwrap()).stateful_event_loop(settings);
 
