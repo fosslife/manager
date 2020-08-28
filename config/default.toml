@@ -1,6 +1,0 @@
-[bot]
-# token = ""
-# master_id =
-
-[database]
-name = "" # database path and name eg: "data/bot.db"

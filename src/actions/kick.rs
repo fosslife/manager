@@ -1,8 +1,9 @@
 use std::sync::Arc;
 use tbot::contexts;
 use tbot::prelude::*;
+use tokio::sync::Mutex;
 
-pub async fn kick(ctx: Arc<contexts::Command<contexts::Text>>, _state: Arc<config::Config>) {
+pub async fn kick(ctx: Arc<contexts::Command<contexts::Text>>, _state: Arc<Mutex<rusqlite::Connection>>) {
     if let Some(message) = ctx.reply_to.clone() {
         let user_to_kick = message.from.as_ref().unwrap().id;
         let username = message.from.as_ref().unwrap().username.as_ref().unwrap();

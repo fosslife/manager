@@ -2,8 +2,9 @@ use std::sync::Arc;
 use tbot::contexts;
 use tbot::prelude::*;
 use tbot::types::parameters::Text;
+use tokio::sync::Mutex;
 
-pub async fn ban(ctx: Arc<contexts::Command<contexts::Text>>, _state: Arc<config::Config>) {
+pub async fn ban(ctx: Arc<contexts::Command<contexts::Text>>, _state: Arc<Mutex<rusqlite::Connection>>) {
     if let Some(message) = ctx.reply_to.clone() {
         // Ban reason is important
         if ctx.text.value.is_empty() {

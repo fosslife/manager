@@ -1,9 +1,10 @@
 use std::sync::Arc;
 use tbot::contexts;
 use tbot::prelude::*;
+use tokio::sync::Mutex;
 use tbot::types::chat::Permissions;
 
-pub async fn mute(ctx: Arc<contexts::Command<contexts::Text>>, _state: Arc<config::Config>) {
+pub async fn mute(ctx: Arc<contexts::Command<contexts::Text>>, _state: Arc<Mutex<rusqlite::Connection>>) {
     if let Some(message) = ctx.reply_to.clone() {
         let user_to_mute = message.from.as_ref().unwrap().id;
         let username = message.from.as_ref().unwrap().username.as_ref().unwrap();
