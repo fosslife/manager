@@ -1,17 +1,17 @@
 #![allow(dead_code)]
 use rusqlite::Connection;
+use settings::AppConfig;
 use tbot::Bot;
 use tokio::sync::Mutex;
-use settings::AppConfig;
 
 mod actions;
-mod settings;
-mod handlers;
 mod database;
+mod handlers;
+mod settings;
 
 pub struct Storages {
     db: Connection,
-    config: AppConfig
+    config: AppConfig,
 }
 
 #[tokio::main]
@@ -22,10 +22,7 @@ async fn main() {
     let admin = config.bot.president.clone(); //config.get_str("bot.president");
     let token = config.bot.token.clone(); //config.get_str("bot.token");
 
-    let storage = Storages {
-        db,
-        config
-    };
+    let storage = Storages { db, config };
 
     if token.is_empty() {
         println!("Invalid configuration. please provide BOT token");

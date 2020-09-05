@@ -1,9 +1,9 @@
 use rusqlite::params;
+use rusqlite::types::Null;
 use std::sync::Arc;
 use std::time::SystemTime;
 use tbot::contexts;
 use tokio::sync::Mutex;
-use rusqlite::types::Null;
 // use tbot::prelude::*;
 
 pub async fn new_memeber(ctx: Arc<contexts::NewMembers>, state: Arc<Mutex<crate::Storages>>) {
