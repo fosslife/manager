@@ -44,6 +44,3 @@ pub fn load() -> AppConfig {
     settings
 }
 
-pub fn save() {
-    todo!()
-}
