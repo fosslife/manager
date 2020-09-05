@@ -43,7 +43,8 @@ pub async fn promote(
                         )
                         .unwrap();
                     // Doesn't work in private chats
-                    let res = ctx.promote_chat_member(Id::from(id))
+                    let res = ctx
+                        .promote_chat_member(Id::from(id))
                         .can_change_info(true)
                         .can_delete_messages(true)
                         .can_invite_users(true)
@@ -55,7 +56,7 @@ pub async fn promote(
                     if let Err(e) = res {
                         dbg!(e);
                     }
-                        // .unwrap();
+                    // .unwrap();
                     ctx.send_message(&format!("Promoted @{} to admin", mention))
                         .call()
                         .await
