@@ -55,8 +55,24 @@ pub async fn promote(
                         .await;
                     if let Err(e) = res {
                         dbg!(e);
+                        ctx.send_message("Error while promoting user. check logs")
+                            .call()
+                            .await
+                            .unwrap();
+                        return;
                     }
-                    // .unwrap();
+
+                    state
+                        .db
+                        .execute(
+                            "
+                        UPDATE Users
+                        SET status = 'admin'
+                        WHERE userid = ?1
+                    ",
+                            params![id],
+                        )
+                        .unwrap();
                     ctx.send_message(&format!("Promoted @{} to admin", mention))
                         .call()
                         .await
