@@ -17,7 +17,7 @@ pub async fn new_memeber(ctx: Arc<contexts::NewMembers>, state: Arc<Mutex<crate:
     };
     let res = db.execute(
         "
-        INSERT INTO Users
+        INSERT OR IGNORE INTO Users
         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
     ",
         params![
