@@ -37,10 +37,12 @@ impl Default for AppConfig {
 pub fn load() -> AppConfig {
     let settings: AppConfig = toml::from_str(
         fs::read_to_string("config/local.toml")
-            .expect("local settings not found")
+            .unwrap_or_else(|x| {
+                eprintln!("Error {}", x);
+                std::process::exit(1);
+            })
             .as_str(),
     )
-    .unwrap();
+    .expect("Incorrect local.toml file");
     settings
 }
-

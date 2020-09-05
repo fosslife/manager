@@ -1,4 +1,3 @@
-#![allow(dead_code)]
 use rusqlite::Connection;
 use settings::AppConfig;
 use tbot::Bot;
@@ -17,7 +16,6 @@ pub struct Storages {
 #[tokio::main]
 async fn main() {
     let config = settings::load();
-    // println!("Settings {:?}", config.get_str("bot.token"));
     let db = database::load().await.unwrap();
     let admin = config.bot.president.clone(); //config.get_str("bot.president");
     let token = config.bot.token.clone(); //config.get_str("bot.token");
