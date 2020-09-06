@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate log;
+
 use rusqlite::Connection;
 use settings::AppConfig;
 use tbot::Bot;
@@ -15,6 +18,11 @@ pub struct Storages {
 
 #[tokio::main]
 async fn main() {
+    //TODO: whatever fix this:
+    std::env::set_var("RUST_LOG", "info,tbot=warn,tbot::event_loop=warn");
+
+    env_logger::init();
+    info!("Starting Governor");
     let config = settings::load();
     let db = database::load().await.unwrap();
     let admin = config.bot.president.clone(); //config.get_str("bot.president");
@@ -45,4 +53,5 @@ async fn main() {
     // bot.help(handler)
 
     bot.polling().start().await.unwrap();
+    info!("Bot Started");
 }

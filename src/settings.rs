@@ -44,5 +44,6 @@ pub fn load() -> AppConfig {
             .as_str(),
     )
     .expect("Incorrect local.toml file");
+    info!("Settings loaded");
     settings
 }

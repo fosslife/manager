@@ -22,5 +22,6 @@ pub async fn load() -> Result<Connection> {
     //     CREATE INDEX idx_user_id
     //     ON Users (userid);
     // ", params![])?;
+    info!("Database loaded");
     Ok(db)
 }
